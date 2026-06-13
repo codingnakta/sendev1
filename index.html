@@ -17,11 +17,13 @@
       --purple: #7c5cbf;
       --purple-light: #a98de0;
       --pink: #f06292;
-      --bg: #0d0d1a;
-      --card: #13132a;
-      --card2: #1a1a35;
+      --bg: #07071a;
       --text: #e8e4f5;
       --muted: #8a84aa;
+      --glass-bg: rgba(255, 255, 255, 0.04);
+      --glass-border: rgba(255, 255, 255, 0.1);
+      --glass-hover: rgba(255, 255, 255, 0.08);
+      --blur: blur(16px);
     }
 
     body {
@@ -30,6 +32,36 @@
       color: var(--text);
       min-height: 100vh;
       overflow-x: hidden;
+    }
+
+    /* 배경 블러 오브 */
+    body::before,
+    body::after {
+      content: '';
+      position: fixed;
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 0;
+    }
+    body::before {
+      width: 600px;
+      height: 600px;
+      top: -150px;
+      left: -100px;
+      background: radial-gradient(circle, rgba(124,92,191,0.35) 0%, transparent 65%);
+    }
+    body::after {
+      width: 500px;
+      height: 500px;
+      bottom: 0;
+      right: -80px;
+      background: radial-gradient(circle, rgba(240,98,146,0.25) 0%, transparent 65%);
+    }
+
+    /* 모든 콘텐츠가 오브 위에 오도록 */
+    .hero, .section, .divider, footer {
+      position: relative;
+      z-index: 1;
     }
 
     /* hero */
@@ -54,8 +86,10 @@
 
     .badge {
       display: inline-block;
-      background: rgba(124,92,191,0.2);
-      border: 1px solid rgba(124,92,191,0.5);
+      background: rgba(124,92,191,0.15);
+      border: 1px solid rgba(169,141,224,0.4);
+      backdrop-filter: var(--blur);
+      -webkit-backdrop-filter: var(--blur);
       color: var(--purple-light);
       border-radius: 999px;
       padding: 6px 18px;
@@ -87,28 +121,39 @@
 
     .hero-cta {
       display: inline-block;
-      background: linear-gradient(135deg, var(--purple), var(--pink));
+      background: linear-gradient(135deg, rgba(124,92,191,0.6), rgba(240,98,146,0.6));
+      backdrop-filter: var(--blur);
+      -webkit-backdrop-filter: var(--blur);
+      border: 1px solid rgba(255,255,255,0.2);
       color: #fff;
-      border-radius: 12px;
+      border-radius: 14px;
       padding: 14px 36px;
       font-size: 1rem;
       font-weight: 700;
       text-decoration: none;
       letter-spacing: 0.02em;
-      box-shadow: 0 4px 24px rgba(124,92,191,0.35);
-      transition: transform 0.2s, box-shadow 0.2s;
+      box-shadow: 0 4px 24px rgba(124,92,191,0.3), inset 0 1px 0 rgba(255,255,255,0.15);
+      transition: transform 0.2s, box-shadow 0.2s, background 0.2s;
     }
 
     .hero-cta:hover {
       transform: translateY(-2px);
-      box-shadow: 0 8px 32px rgba(124,92,191,0.5);
+      background: linear-gradient(135deg, rgba(124,92,191,0.8), rgba(240,98,146,0.8));
+      box-shadow: 0 8px 36px rgba(124,92,191,0.45), inset 0 1px 0 rgba(255,255,255,0.2);
     }
 
     /* what */
     .section {
       max-width: 860px;
       margin: 0 auto;
-      padding: 60px 24px;
+      padding: 60px 40px;
+      background: var(--glass-bg);
+      backdrop-filter: var(--blur);
+      -webkit-backdrop-filter: var(--blur);
+      border-radius: 24px;
+      border: 1px solid var(--glass-border);
+      box-shadow: 0 4px 32px rgba(0,0,0,0.2), inset 0 1px 0 rgba(255,255,255,0.05);
+      margin-bottom: 24px;
     }
 
     .section-label {
@@ -141,15 +186,19 @@
 
     /* quote */
     .quote-block {
-      background: var(--card);
+      background: var(--glass-bg);
+      backdrop-filter: var(--blur);
+      -webkit-backdrop-filter: var(--blur);
+      border: 1px solid var(--glass-border);
       border-left: 4px solid var(--purple);
-      border-radius: 0 12px 12px 0;
+      border-radius: 0 16px 16px 0;
       padding: 24px 28px;
       margin: 36px 0;
       font-size: 1.05rem;
       font-style: italic;
       color: #cac4e8;
       line-height: 1.75;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.2);
     }
 
     .quote-block cite {
@@ -169,16 +218,21 @@
     }
 
     .card {
-      background: var(--card);
-      border: 1px solid rgba(124,92,191,0.15);
-      border-radius: 16px;
+      background: var(--glass-bg);
+      backdrop-filter: var(--blur);
+      -webkit-backdrop-filter: var(--blur);
+      border: 1px solid var(--glass-border);
+      border-radius: 20px;
       padding: 28px 24px;
-      transition: border-color 0.2s, transform 0.2s;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.2), inset 0 1px 0 rgba(255,255,255,0.06);
+      transition: border-color 0.2s, transform 0.2s, box-shadow 0.2s, background 0.2s;
     }
 
     .card:hover {
-      border-color: rgba(124,92,191,0.45);
-      transform: translateY(-3px);
+      background: var(--glass-hover);
+      border-color: rgba(169,141,224,0.35);
+      transform: translateY(-4px);
+      box-shadow: 0 12px 40px rgba(124,92,191,0.2), inset 0 1px 0 rgba(255,255,255,0.1);
     }
 
     .card-icon {
@@ -263,29 +317,51 @@
     }
 
     .tag {
-      background: rgba(124,92,191,0.15);
-      border: 1px solid rgba(124,92,191,0.3);
+      background: rgba(124,92,191,0.1);
+      backdrop-filter: var(--blur);
+      -webkit-backdrop-filter: var(--blur);
+      border: 1px solid rgba(169,141,224,0.25);
       color: var(--purple-light);
       border-radius: 999px;
       padding: 7px 18px;
       font-size: 0.88rem;
       font-weight: 500;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.06);
+      transition: background 0.2s, border-color 0.2s;
     }
 
-    /* divider */
+    .tag:hover {
+      background: rgba(124,92,191,0.2);
+      border-color: rgba(169,141,224,0.45);
+    }
+
+    /* divider → 섹션 패널 사이 간격 역할 */
     .divider {
-      height: 1px;
-      background: rgba(124,92,191,0.12);
-      max-width: 860px;
+      display: none;
+    }
+
+    /* 섹션 래퍼 */
+    .sections-wrap {
+      max-width: 920px;
       margin: 0 auto;
+      padding: 0 24px 48px;
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
     }
 
     /* footer */
     footer {
+      position: relative;
+      z-index: 1;
       text-align: center;
-      padding: 48px 24px 64px;
+      padding: 40px 24px 56px;
       color: var(--muted);
       font-size: 0.88rem;
+      background: var(--glass-bg);
+      backdrop-filter: var(--blur);
+      -webkit-backdrop-filter: var(--blur);
+      border-top: 1px solid var(--glass-border);
     }
 
     footer a {
@@ -307,115 +383,113 @@
     <a href="#what" class="hero-cta">바이브코딩 알아보기</a>
   </section>
 
-  <!-- What -->
-  <div class="divider"></div>
-  <section class="section" id="what">
-    <p class="section-label">What is Vibe Coding?</p>
-    <h2>바이브코딩이란?</h2>
-    <p>
-      바이브코딩(Vibe Coding)은 2025년 AI 연구자 <span class="highlight">안드레이 카르파시(Andrej Karpathy)</span>가
-      제안한 개념으로, <span class="highlight">AI에게 원하는 것을 말로 설명하며</span> 코드를 생성하는 개발 방식입니다.
-      문법을 암기하거나 API를 뒤지는 대신, 아이디어의 <em>분위기(vibe)</em>를 AI에 전달해 실시간으로 결과물을 만들어 냅니다.
-    </p>
+  <div class="sections-wrap">
 
-    <div class="quote-block">
-      "완전히 새로운 방식으로 코딩하고 있는데, 나는 그냥 느낌(vibe)에 완전히 항복한다.
-      오류 메시지도 그냥 AI에 붙여넣고, 더 이상 코드를 이해하려 하지 않는다."
-      <cite>— Andrej Karpathy, 2025</cite>
-    </div>
+    <!-- What -->
+    <section class="section" id="what">
+      <p class="section-label">What is Vibe Coding?</p>
+      <h2>바이브코딩이란?</h2>
+      <p>
+        바이브코딩(Vibe Coding)은 2025년 AI 연구자 <span class="highlight">안드레이 카르파시(Andrej Karpathy)</span>가
+        제안한 개념으로, <span class="highlight">AI에게 원하는 것을 말로 설명하며</span> 코드를 생성하는 개발 방식입니다.
+        문법을 암기하거나 API를 뒤지는 대신, 아이디어의 <em>분위기(vibe)</em>를 AI에 전달해 실시간으로 결과물을 만들어 냅니다.
+      </p>
 
-    <p>
-      이는 단순한 자동완성을 넘어, <span class="highlight">자연어가 새로운 프로그래밍 언어</span>가 되는 패러다임 전환입니다.
-      비개발자도 앱을 만들고, 개발자는 반복 작업에서 벗어나 더 큰 문제에 집중할 수 있습니다.
-    </p>
-  </section>
+      <div class="quote-block">
+        "완전히 새로운 방식으로 코딩하고 있는데, 나는 그냥 느낌(vibe)에 완전히 항복한다.
+        오류 메시지도 그냥 AI에 붙여넣고, 더 이상 코드를 이해하려 하지 않는다."
+        <cite>— Andrej Karpathy, 2025</cite>
+      </div>
 
-  <!-- Why -->
-  <div class="divider"></div>
-  <section class="section">
-    <p class="section-label">Why Vibe Coding?</p>
-    <h2>왜 주목받고 있나요?</h2>
-    <div class="cards">
-      <div class="card">
-        <div class="card-icon">⚡</div>
-        <h3>속도</h3>
-        <p>아이디어 → 프로토타입까지의 시간이 획기적으로 단축됩니다. 며칠 걸리던 MVP를 수 시간 내에 만들 수 있습니다.</p>
-      </div>
-      <div class="card">
-        <div class="card-icon">🌱</div>
-        <h3>진입장벽 해소</h3>
-        <p>프로그래밍 문법을 몰라도 됩니다. 기획자, 디자이너, 학생 누구나 아이디어를 직접 구현할 수 있습니다.</p>
-      </div>
-      <div class="card">
-        <div class="card-icon">🎯</div>
-        <h3>창의성 집중</h3>
-        <p>반복적인 보일러플레이트 코드에서 해방되어, 진짜 중요한 문제 해결과 창의적 사고에 에너지를 쏟을 수 있습니다.</p>
-      </div>
-      <div class="card">
-        <div class="card-icon">🤝</div>
-        <h3>AI와 협업</h3>
-        <p>AI는 조수가 아닌 페어 프로그래머가 됩니다. 함께 설계하고, 디버깅하고, 개선해 나갑니다.</p>
-      </div>
-    </div>
-  </section>
+      <p>
+        이는 단순한 자동완성을 넘어, <span class="highlight">자연어가 새로운 프로그래밍 언어</span>가 되는 패러다임 전환입니다.
+        비개발자도 앱을 만들고, 개발자는 반복 작업에서 벗어나 더 큰 문제에 집중할 수 있습니다.
+      </p>
+    </section>
 
-  <!-- How -->
-  <div class="divider"></div>
-  <section class="section">
-    <p class="section-label">How to Vibe Code</p>
-    <h2>어떻게 시작하나요?</h2>
-    <div class="steps">
-      <div class="step">
-        <div class="step-num">1</div>
-        <div class="step-body">
-          <h3>아이디어를 자연어로 표현하세요</h3>
-          <p>만들고 싶은 것을 마치 친구에게 설명하듯 AI에게 말하세요. "할 일 목록 앱인데, 완료하면 불꽃 애니메이션이 나왔으면 해."</p>
+    <!-- Why -->
+    <section class="section">
+      <p class="section-label">Why Vibe Coding?</p>
+      <h2>왜 주목받고 있나요?</h2>
+      <div class="cards">
+        <div class="card">
+          <div class="card-icon">⚡</div>
+          <h3>속도</h3>
+          <p>아이디어 → 프로토타입까지의 시간이 획기적으로 단축됩니다. 며칠 걸리던 MVP를 수 시간 내에 만들 수 있습니다.</p>
+        </div>
+        <div class="card">
+          <div class="card-icon">🌱</div>
+          <h3>진입장벽 해소</h3>
+          <p>프로그래밍 문법을 몰라도 됩니다. 기획자, 디자이너, 학생 누구나 아이디어를 직접 구현할 수 있습니다.</p>
+        </div>
+        <div class="card">
+          <div class="card-icon">🎯</div>
+          <h3>창의성 집중</h3>
+          <p>반복적인 보일러플레이트 코드에서 해방되어, 진짜 중요한 문제 해결과 창의적 사고에 에너지를 쏟을 수 있습니다.</p>
+        </div>
+        <div class="card">
+          <div class="card-icon">🤝</div>
+          <h3>AI와 협업</h3>
+          <p>AI는 조수가 아닌 페어 프로그래머가 됩니다. 함께 설계하고, 디버깅하고, 개선해 나갑니다.</p>
         </div>
       </div>
-      <div class="step">
-        <div class="step-num">2</div>
-        <div class="step-body">
-          <h3>AI가 생성한 코드를 실행하세요</h3>
-          <p>완벽히 이해하지 않아도 괜찮습니다. 일단 실행해서 눈으로 확인하고 피드백을 주세요.</p>
-        </div>
-      </div>
-      <div class="step">
-        <div class="step-num">3</div>
-        <div class="step-body">
-          <h3>대화하며 개선하세요</h3>
-          <p>"버튼 색을 바꿔줘", "모바일에서 레이아웃이 깨져" 처럼 발견한 문제를 바로 말로 전달하세요.</p>
-        </div>
-      </div>
-      <div class="step">
-        <div class="step-num">4</div>
-        <div class="step-body">
-          <h3>반복하며 완성하세요</h3>
-          <p>빠른 피드백 루프로 제품을 키워나가세요. 바이브코딩은 완성보다 <em>흐름</em>이 중요합니다.</p>
-        </div>
-      </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- Tags -->
-  <div class="divider"></div>
-  <section class="section">
-    <p class="section-label">Key Concepts</p>
-    <h2>관련 키워드</h2>
-    <div class="tag-row">
-      <span class="tag"># AI 페어 프로그래밍</span>
-      <span class="tag"># 자연어 인터페이스</span>
-      <span class="tag"># 프롬프트 엔지니어링</span>
-      <span class="tag"># 노코드 · 로우코드</span>
-      <span class="tag"># 생성형 AI</span>
-      <span class="tag"># Claude Code</span>
-      <span class="tag"># Cursor</span>
-      <span class="tag"># GitHub Copilot</span>
-      <span class="tag"># 개발자 생산성</span>
-      <span class="tag"># 프로토타이핑</span>
-    </div>
-  </section>
+    <!-- How -->
+    <section class="section">
+      <p class="section-label">How to Vibe Code</p>
+      <h2>어떻게 시작하나요?</h2>
+      <div class="steps">
+        <div class="step">
+          <div class="step-num">1</div>
+          <div class="step-body">
+            <h3>아이디어를 자연어로 표현하세요</h3>
+            <p>만들고 싶은 것을 마치 친구에게 설명하듯 AI에게 말하세요. "할 일 목록 앱인데, 완료하면 불꽃 애니메이션이 나왔으면 해."</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">2</div>
+          <div class="step-body">
+            <h3>AI가 생성한 코드를 실행하세요</h3>
+            <p>완벽히 이해하지 않아도 괜찮습니다. 일단 실행해서 눈으로 확인하고 피드백을 주세요.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">3</div>
+          <div class="step-body">
+            <h3>대화하며 개선하세요</h3>
+            <p>"버튼 색을 바꿔줘", "모바일에서 레이아웃이 깨져" 처럼 발견한 문제를 바로 말로 전달하세요.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">4</div>
+          <div class="step-body">
+            <h3>반복하며 완성하세요</h3>
+            <p>빠른 피드백 루프로 제품을 키워나가세요. 바이브코딩은 완성보다 <em>흐름</em>이 중요합니다.</p>
+          </div>
+        </div>
+      </div>
+    </section>
 
-  <div class="divider"></div>
+    <!-- Tags -->
+    <section class="section">
+      <p class="section-label">Key Concepts</p>
+      <h2>관련 키워드</h2>
+      <div class="tag-row">
+        <span class="tag"># AI 페어 프로그래밍</span>
+        <span class="tag"># 자연어 인터페이스</span>
+        <span class="tag"># 프롬프트 엔지니어링</span>
+        <span class="tag"># 노코드 · 로우코드</span>
+        <span class="tag"># 생성형 AI</span>
+        <span class="tag"># Claude Code</span>
+        <span class="tag"># Cursor</span>
+        <span class="tag"># GitHub Copilot</span>
+        <span class="tag"># 개발자 생산성</span>
+        <span class="tag"># 프로토타이핑</span>
+      </div>
+    </section>
+
+  </div>
   <footer>
     <p>바이브코딩을 직접 경험해보고 싶다면 → <a href="https://claude.ai" target="_blank">claude.ai</a> / <a href="https://cursor.sh" target="_blank">cursor.sh</a></p>
     <p style="margin-top:12px;">만든이: <a href="https://github.com/codingnakta/" target="_blank">codingnakta</a></p>
