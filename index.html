@@ -308,6 +308,103 @@
       color: var(--muted);
     }
 
+    /* deploy platform cards */
+    .deploy-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 16px;
+      margin-top: 36px;
+    }
+
+    .deploy-card {
+      background: var(--glass-bg);
+      backdrop-filter: var(--blur);
+      -webkit-backdrop-filter: var(--blur);
+      border: 1px solid var(--glass-border);
+      border-radius: 18px;
+      padding: 24px 20px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.18), inset 0 1px 0 rgba(255,255,255,0.06);
+      transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s, background 0.2s;
+      text-decoration: none;
+      display: block;
+    }
+
+    .deploy-card:hover {
+      background: var(--glass-hover);
+      border-color: rgba(169,141,224,0.4);
+      transform: translateY(-4px);
+      box-shadow: 0 12px 36px rgba(124,92,191,0.2), inset 0 1px 0 rgba(255,255,255,0.1);
+    }
+
+    .deploy-card .dc-logo {
+      font-size: 1.8rem;
+      margin-bottom: 10px;
+    }
+
+    .deploy-card .dc-name {
+      font-size: 1rem;
+      font-weight: 700;
+      color: #f0ebff;
+      margin-bottom: 6px;
+    }
+
+    .deploy-card .dc-desc {
+      font-size: 0.84rem;
+      line-height: 1.6;
+      color: var(--muted);
+    }
+
+    .deploy-card .dc-badge {
+      display: inline-block;
+      margin-top: 10px;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      padding: 3px 10px;
+      border-radius: 999px;
+      background: rgba(124,92,191,0.2);
+      border: 1px solid rgba(169,141,224,0.3);
+      color: var(--purple-light);
+    }
+
+    /* deploy tip list */
+    .tip-list {
+      margin-top: 32px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .tip-item {
+      display: flex;
+      gap: 14px;
+      align-items: flex-start;
+      background: var(--glass-bg);
+      backdrop-filter: var(--blur);
+      -webkit-backdrop-filter: var(--blur);
+      border: 1px solid var(--glass-border);
+      border-radius: 14px;
+      padding: 16px 20px;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.04);
+    }
+
+    .tip-icon {
+      font-size: 1.3rem;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    .tip-item p {
+      font-size: 0.95rem;
+      line-height: 1.65;
+      color: var(--muted);
+      max-width: 100%;
+    }
+
+    .tip-item strong {
+      color: #d8d0f0;
+    }
+
     /* tags */
     .tag-row {
       display: flex;
@@ -467,6 +564,62 @@
             <h3>반복하며 완성하세요</h3>
             <p>빠른 피드백 루프로 제품을 키워나가세요. 바이브코딩은 완성보다 <em>흐름</em>이 중요합니다.</p>
           </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Deploy -->
+    <section class="section" id="deploy">
+      <p class="section-label">Deploy &amp; Ship</p>
+      <h2>만든 것을 세상에 배포하세요</h2>
+      <p>
+        바이브코딩으로 완성한 프로젝트는 별도 서버 없이도 <span class="highlight">몇 번의 클릭</span>으로 전 세계에 공개할 수 있습니다.
+        아래 플랫폼들은 GitHub 연동 한 번으로 코드가 올라갈 때마다 자동으로 배포해 줍니다.
+      </p>
+
+      <div class="deploy-grid">
+        <a class="deploy-card" href="https://vercel.com" target="_blank">
+          <div class="dc-logo">▲</div>
+          <div class="dc-name">Vercel</div>
+          <div class="dc-desc">Next.js, React, Vue 등 프론트엔드에 최적화. GitHub 연동 즉시 자동 배포.</div>
+          <span class="dc-badge">무료 플랜 있음</span>
+        </a>
+        <a class="deploy-card" href="https://pages.github.com" target="_blank">
+          <div class="dc-logo">🐙</div>
+          <div class="dc-name">GitHub Pages</div>
+          <div class="dc-desc">정적 HTML/CSS/JS 사이트를 GitHub 저장소에서 바로 호스팅.</div>
+          <span class="dc-badge">완전 무료</span>
+        </a>
+        <a class="deploy-card" href="https://www.netlify.com" target="_blank">
+          <div class="dc-logo">◈</div>
+          <div class="dc-name">Netlify</div>
+          <div class="dc-desc">드래그 앤 드롭 배포 지원. 폼·함수·CDN 내장으로 빠른 시작.</div>
+          <span class="dc-badge">무료 플랜 있음</span>
+        </a>
+        <a class="deploy-card" href="https://replit.com" target="_blank">
+          <div class="dc-logo">♻</div>
+          <div class="dc-name">Replit</div>
+          <div class="dc-desc">브라우저에서 코딩하고 바로 배포. AI 기능 내장으로 바이브코딩에 최적.</div>
+          <span class="dc-badge">무료 플랜 있음</span>
+        </a>
+      </div>
+
+      <div class="tip-list">
+        <div class="tip-item">
+          <span class="tip-icon">💡</span>
+          <p><strong>GitHub에 먼저 올리세요.</strong> 대부분의 배포 플랫폼은 GitHub 저장소를 연결하면 push할 때마다 자동으로 새 버전을 배포합니다.</p>
+        </div>
+        <div class="tip-item">
+          <span class="tip-icon">🔒</span>
+          <p><strong>환경변수(API 키)를 코드에 직접 넣지 마세요.</strong> Vercel·Netlify 모두 환경변수 설정 메뉴를 제공합니다. AI에게 "환경변수로 분리해줘"라고 말하면 됩니다.</p>
+        </div>
+        <div class="tip-item">
+          <span class="tip-icon">🌐</span>
+          <p><strong>커스텀 도메인도 무료로.</strong> 배포 후 도메인을 연결하면 나만의 URL을 가질 수 있습니다. 가비아·Cloudflare 등에서 저렴하게 구매 가능.</p>
+        </div>
+        <div class="tip-item">
+          <span class="tip-icon">🚀</span>
+          <p><strong>정적 사이트는 GitHub Pages가 가장 간단합니다.</strong> 이 페이지처럼 HTML 파일 하나라면 저장소 설정에서 Pages를 활성화하는 것만으로 끝입니다.</p>
         </div>
       </div>
     </section>
