@@ -3,156 +3,423 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>윤다연 소개</title>
+  <title>바이브코딩이란?</title>
   <style>
+    @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&display=swap');
+
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
     }
 
+    :root {
+      --purple: #7c5cbf;
+      --purple-light: #a98de0;
+      --pink: #f06292;
+      --bg: #0d0d1a;
+      --card: #13132a;
+      --card2: #1a1a35;
+      --text: #e8e4f5;
+      --muted: #8a84aa;
+    }
+
     body {
-      font-family: 'Noto Sans KR', 'Malgun Gothic', sans-serif;
-      background: #fdf0f5;
-      color: #4a4a5a;
+      font-family: 'Noto Sans KR', sans-serif;
+      background: var(--bg);
+      color: var(--text);
       min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      overflow-x: hidden;
     }
 
-    .container {
-      max-width: 680px;
-      width: 90%;
-      padding: 60px 40px;
-      background: #fff8fb;
-      border-radius: 24px;
-      box-shadow: 0 4px 32px rgba(200, 150, 180, 0.12);
+    /* hero */
+    .hero {
+      position: relative;
+      padding: 100px 24px 80px;
+      text-align: center;
+      overflow: hidden;
     }
 
-    .avatar {
-      width: 96px;
-      height: 96px;
-      border-radius: 50%;
-      background: linear-gradient(135deg, #c9b8e8, #f9c6d8);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 40px;
-      margin-bottom: 28px;
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -120px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 700px;
+      height: 700px;
+      background: radial-gradient(circle, rgba(124,92,191,0.25) 0%, transparent 70%);
+      pointer-events: none;
     }
 
-    h1 {
-      font-size: 2rem;
+    .badge {
+      display: inline-block;
+      background: rgba(124,92,191,0.2);
+      border: 1px solid rgba(124,92,191,0.5);
+      color: var(--purple-light);
+      border-radius: 999px;
+      padding: 6px 18px;
+      font-size: 0.8rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 24px;
+    }
+
+    .hero h1 {
+      font-size: clamp(2.6rem, 8vw, 5rem);
+      font-weight: 900;
+      line-height: 1.15;
+      margin-bottom: 20px;
+      background: linear-gradient(135deg, #c4b0f0, #f06292 60%, #ffd54f);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero .sub {
+      font-size: 1.15rem;
+      color: var(--muted);
+      max-width: 520px;
+      margin: 0 auto 40px;
+      line-height: 1.7;
+    }
+
+    .hero-cta {
+      display: inline-block;
+      background: linear-gradient(135deg, var(--purple), var(--pink));
+      color: #fff;
+      border-radius: 12px;
+      padding: 14px 36px;
+      font-size: 1rem;
       font-weight: 700;
-      line-height: 1.3;
-      margin-bottom: 12px;
-      color: #5a4a6a;
-    }
-
-    .subtitle {
-      font-size: 1rem;
-      color: #b09ab8;
-      margin-bottom: 36px;
+      text-decoration: none;
       letter-spacing: 0.02em;
+      box-shadow: 0 4px 24px rgba(124,92,191,0.35);
+      transition: transform 0.2s, box-shadow 0.2s;
     }
 
-    .divider {
-      border: none;
-      border-top: 1px solid #f0d8e8;
-      margin-bottom: 32px;
+    .hero-cta:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 32px rgba(124,92,191,0.5);
     }
 
-    .bio {
-      font-size: 1rem;
-      line-height: 1.8;
-      color: #7a6a82;
-      margin-bottom: 36px;
+    /* what */
+    .section {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 60px 24px;
     }
 
-    .tags {
+    .section-label {
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--purple-light);
+      margin-bottom: 14px;
+    }
+
+    .section h2 {
+      font-size: clamp(1.6rem, 4vw, 2.4rem);
+      font-weight: 800;
+      margin-bottom: 20px;
+      color: #f0ebff;
+    }
+
+    .section p {
+      font-size: 1.05rem;
+      line-height: 1.85;
+      color: var(--muted);
+      max-width: 660px;
+    }
+
+    .highlight {
+      color: var(--purple-light);
+      font-weight: 600;
+    }
+
+    /* quote */
+    .quote-block {
+      background: var(--card);
+      border-left: 4px solid var(--purple);
+      border-radius: 0 12px 12px 0;
+      padding: 24px 28px;
+      margin: 36px 0;
+      font-size: 1.05rem;
+      font-style: italic;
+      color: #cac4e8;
+      line-height: 1.75;
+    }
+
+    .quote-block cite {
+      display: block;
+      margin-top: 10px;
+      font-style: normal;
+      font-size: 0.85rem;
+      color: var(--muted);
+    }
+
+    /* cards */
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 20px;
+      margin-top: 40px;
+    }
+
+    .card {
+      background: var(--card);
+      border: 1px solid rgba(124,92,191,0.15);
+      border-radius: 16px;
+      padding: 28px 24px;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+
+    .card:hover {
+      border-color: rgba(124,92,191,0.45);
+      transform: translateY(-3px);
+    }
+
+    .card-icon {
+      font-size: 2rem;
+      margin-bottom: 14px;
+    }
+
+    .card h3 {
+      font-size: 1.1rem;
+      font-weight: 700;
+      margin-bottom: 8px;
+      color: #f0ebff;
+    }
+
+    .card p {
+      font-size: 0.92rem;
+      line-height: 1.7;
+      color: var(--muted);
+    }
+
+    /* steps */
+    .steps {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      margin-top: 40px;
+      position: relative;
+    }
+
+    .steps::before {
+      content: '';
+      position: absolute;
+      left: 23px;
+      top: 0;
+      bottom: 0;
+      width: 2px;
+      background: linear-gradient(to bottom, var(--purple), var(--pink));
+      border-radius: 2px;
+    }
+
+    .step {
+      display: flex;
+      gap: 24px;
+      align-items: flex-start;
+      padding: 0 0 36px 0;
+    }
+
+    .step-num {
+      flex-shrink: 0;
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--purple), var(--pink));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 900;
+      font-size: 1.1rem;
+      z-index: 1;
+    }
+
+    .step-body h3 {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: #f0ebff;
+      margin-bottom: 6px;
+      padding-top: 10px;
+    }
+
+    .step-body p {
+      font-size: 0.92rem;
+      line-height: 1.7;
+      color: var(--muted);
+    }
+
+    /* tags */
+    .tag-row {
       display: flex;
       flex-wrap: wrap;
-      gap: 8px;
-      margin-bottom: 40px;
+      gap: 10px;
+      margin-top: 32px;
     }
 
     .tag {
-      background: #f3e8f7;
-      color: #9b7bb8;
-      border-radius: 20px;
-      padding: 6px 16px;
-      font-size: 0.875rem;
+      background: rgba(124,92,191,0.15);
+      border: 1px solid rgba(124,92,191,0.3);
+      color: var(--purple-light);
+      border-radius: 999px;
+      padding: 7px 18px;
+      font-size: 0.88rem;
       font-weight: 500;
     }
 
-    .contact {
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
+    /* divider */
+    .divider {
+      height: 1px;
+      background: rgba(124,92,191,0.12);
+      max-width: 860px;
+      margin: 0 auto;
     }
 
-    .contact-item {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      font-size: 0.95rem;
-      color: #8a7a92;
-    }
-
-    .contact-item .icon {
-      font-size: 1.1rem;
-      width: 24px;
+    /* footer */
+    footer {
       text-align: center;
+      padding: 48px 24px 64px;
+      color: var(--muted);
+      font-size: 0.88rem;
     }
 
-    .contact-item a {
-      color: #b089c8;
+    footer a {
+      color: var(--purple-light);
       text-decoration: none;
-    }
-
-    .contact-item a:hover {
-      text-decoration: underline;
     }
   </style>
 </head>
 <body>
-  <div class="container">
-    <div class="avatar">👋</div>
 
-    <h1>안녕하세요.<br>윤다연입니다.</h1>
-    <p class="subtitle">개발자 · 교사 · 창작자</p>
+  <!-- Hero -->
+  <section class="hero">
+    <div class="badge">✦ New Way of Coding</div>
+    <h1>바이브코딩</h1>
+    <p class="sub">
+      코드를 외우지 말고, <strong style="color:#c4b0f0">느낌으로 만드세요.</strong><br>
+      AI와 대화하며 아이디어를 바로 현실로 옮기는 새로운 개발 방식입니다.
+    </p>
+    <a href="#what" class="hero-cta">바이브코딩 알아보기</a>
+  </section>
 
-    <hr class="divider" />
-
-    <p class="bio">
-      새로운 것을 배우고 만드는 것을 좋아합니다.<br>
-      코드 한 줄, 디자인 한 획에 진심을 담아 작업합니다.<br>
-      함께 성장할 수 있는 사람들과 일하고 싶습니다.
+  <!-- What -->
+  <div class="divider"></div>
+  <section class="section" id="what">
+    <p class="section-label">What is Vibe Coding?</p>
+    <h2>바이브코딩이란?</h2>
+    <p>
+      바이브코딩(Vibe Coding)은 2025년 AI 연구자 <span class="highlight">안드레이 카르파시(Andrej Karpathy)</span>가
+      제안한 개념으로, <span class="highlight">AI에게 원하는 것을 말로 설명하며</span> 코드를 생성하는 개발 방식입니다.
+      문법을 암기하거나 API를 뒤지는 대신, 아이디어의 <em>분위기(vibe)</em>를 AI에 전달해 실시간으로 결과물을 만들어 냅니다.
     </p>
 
-    <div class="tags">
-      <span class="tag">#웹개발</span>
-      <span class="tag">#UI/UX</span>
-      <span class="tag">#창작</span>
-      <span class="tag">#독서</span>
-      <span class="tag">#커피</span>
+    <div class="quote-block">
+      "완전히 새로운 방식으로 코딩하고 있는데, 나는 그냥 느낌(vibe)에 완전히 항복한다.
+      오류 메시지도 그냥 AI에 붙여넣고, 더 이상 코드를 이해하려 하지 않는다."
+      <cite>— Andrej Karpathy, 2025</cite>
     </div>
 
-    <div class="contact">
-      <div class="contact-item">
-        <span class="icon">📧</span>
-        <span>이메일: <a href="mailto:dayeont001@e-mirim.hs.kr">dayeont001@e-mirim.hs.kr</a></span>
+    <p>
+      이는 단순한 자동완성을 넘어, <span class="highlight">자연어가 새로운 프로그래밍 언어</span>가 되는 패러다임 전환입니다.
+      비개발자도 앱을 만들고, 개발자는 반복 작업에서 벗어나 더 큰 문제에 집중할 수 있습니다.
+    </p>
+  </section>
+
+  <!-- Why -->
+  <div class="divider"></div>
+  <section class="section">
+    <p class="section-label">Why Vibe Coding?</p>
+    <h2>왜 주목받고 있나요?</h2>
+    <div class="cards">
+      <div class="card">
+        <div class="card-icon">⚡</div>
+        <h3>속도</h3>
+        <p>아이디어 → 프로토타입까지의 시간이 획기적으로 단축됩니다. 며칠 걸리던 MVP를 수 시간 내에 만들 수 있습니다.</p>
       </div>
-      <div class="contact-item">
-        <span class="icon">🔗</span>
-        <span>GitHub: <a href="https://github.com/codingnakta/" target="_blank">https://github.com/codingnakta</a></span>
+      <div class="card">
+        <div class="card-icon">🌱</div>
+        <h3>진입장벽 해소</h3>
+        <p>프로그래밍 문법을 몰라도 됩니다. 기획자, 디자이너, 학생 누구나 아이디어를 직접 구현할 수 있습니다.</p>
       </div>
-      <div class="contact-item">
-        <span class="icon">📍</span>
-        <span>서울, 대한민국</span>
+      <div class="card">
+        <div class="card-icon">🎯</div>
+        <h3>창의성 집중</h3>
+        <p>반복적인 보일러플레이트 코드에서 해방되어, 진짜 중요한 문제 해결과 창의적 사고에 에너지를 쏟을 수 있습니다.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">🤝</div>
+        <h3>AI와 협업</h3>
+        <p>AI는 조수가 아닌 페어 프로그래머가 됩니다. 함께 설계하고, 디버깅하고, 개선해 나갑니다.</p>
       </div>
     </div>
-  </div>
+  </section>
+
+  <!-- How -->
+  <div class="divider"></div>
+  <section class="section">
+    <p class="section-label">How to Vibe Code</p>
+    <h2>어떻게 시작하나요?</h2>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <div class="step-body">
+          <h3>아이디어를 자연어로 표현하세요</h3>
+          <p>만들고 싶은 것을 마치 친구에게 설명하듯 AI에게 말하세요. "할 일 목록 앱인데, 완료하면 불꽃 애니메이션이 나왔으면 해."</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <div class="step-body">
+          <h3>AI가 생성한 코드를 실행하세요</h3>
+          <p>완벽히 이해하지 않아도 괜찮습니다. 일단 실행해서 눈으로 확인하고 피드백을 주세요.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <div class="step-body">
+          <h3>대화하며 개선하세요</h3>
+          <p>"버튼 색을 바꿔줘", "모바일에서 레이아웃이 깨져" 처럼 발견한 문제를 바로 말로 전달하세요.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">4</div>
+        <div class="step-body">
+          <h3>반복하며 완성하세요</h3>
+          <p>빠른 피드백 루프로 제품을 키워나가세요. 바이브코딩은 완성보다 <em>흐름</em>이 중요합니다.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Tags -->
+  <div class="divider"></div>
+  <section class="section">
+    <p class="section-label">Key Concepts</p>
+    <h2>관련 키워드</h2>
+    <div class="tag-row">
+      <span class="tag"># AI 페어 프로그래밍</span>
+      <span class="tag"># 자연어 인터페이스</span>
+      <span class="tag"># 프롬프트 엔지니어링</span>
+      <span class="tag"># 노코드 · 로우코드</span>
+      <span class="tag"># 생성형 AI</span>
+      <span class="tag"># Claude Code</span>
+      <span class="tag"># Cursor</span>
+      <span class="tag"># GitHub Copilot</span>
+      <span class="tag"># 개발자 생산성</span>
+      <span class="tag"># 프로토타이핑</span>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+  <footer>
+    <p>바이브코딩을 직접 경험해보고 싶다면 → <a href="https://claude.ai" target="_blank">claude.ai</a> / <a href="https://cursor.sh" target="_blank">cursor.sh</a></p>
+    <p style="margin-top:12px;">만든이: <a href="https://github.com/codingnakta/" target="_blank">codingnakta</a></p>
+  </footer>
+
 </body>
 </html>
